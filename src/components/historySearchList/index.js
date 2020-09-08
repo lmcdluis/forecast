@@ -3,9 +3,11 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
 
+// Seteo de informacion proveniente del localstorage
 const HistorySearchList = (props) => {
   const [historyList, setHistoryList] = useState([]);
 
+  //Mando a traer la informacion almacenada
   useEffect(() => {
     const valueLocalStorage = JSON.parse(
       localStorage.getItem("searchCountryHisotry")
@@ -13,10 +15,12 @@ const HistorySearchList = (props) => {
     setHistoryList(valueLocalStorage);
   }, [props]);
 
+  //Funcion para repertir busqueda almancenada
   const showItemtTable = (data) => {
     props.setWeather(data);
   };
 
+  //Funcion para eliminar busqueda de la lista
   const trashItemtTable = (data) => {
     historyList.splice(historyList.indexOf(data), 1);
     props.setWeather(historyList);

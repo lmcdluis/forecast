@@ -1,11 +1,13 @@
 import axios from "axios";
+import { REACT_APP_APPI_KEY } from "../keys";
 
+// Servicio para realizar la peticion al api
 export class Service {
   async getWeatherBySearch(country) {
     let result = null;
     try {
-      result = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${country}&appid=455120a1902a66896189ef9b77d55012&units=metric&lang=es`
+      result = await axios.post(
+        `https://api.openweathermap.org/data/2.5/weather?q=${country}&appid=${REACT_APP_APPI_KEY}&units=metric&lang=es`
       );
     } catch (error) {
       result = error.response;

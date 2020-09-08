@@ -1,0 +1,3 @@
+module.exports = {
+  REACT_APP_APPI_KEY: "455120a1902a66896189ef9b77d55012",
+};
