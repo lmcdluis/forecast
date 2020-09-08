@@ -1,50 +1,76 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Service } from "../../services";
 
+const arraySearchHistory = [];
+
 const FormSearchHome = (props) => {
   const service = new Service();
-  const [weatherInfo, setweatherInfo] = useState("");
+  const [countryValue, setCountryValue] = useState("");
 
-  useEffect(() => {});
+  useEffect(() => {
+    const getCountryData = async () => {
+      let res;
+      if (countryValue) {
+        res = await service.getWeatherBySearch(countryValue);
+        if (res.status === 200) {
+          const data = res.data;
+          const newRecord = {
+            country: data.name,
+            temperature: data.main.temp,
+            pressure: data.main.pressure,
+            humidity: data.main.humidity,
+            maxtemperature: data.main.temp_max,
+            mintemperature: data.main.temp_min,
+            latitud: data.coord.lat,
+            longitud: data.coord.lon,
+            coordenadas: data.coord,
+            icon: data.weather[0].icon,
+          };
+          props.setWeatherInfo(newRecord);
+          arraySearchHistory.push(newRecord);
+          if (arraySearchHistory.length > 5) {
+            arraySearchHistory.shift();
+          }
+          localStorage.setItem(
+            "searchCountryHisotry",
+            JSON.stringify(arraySearchHistory)
+          );
+        }
+      }
+    };
+    getCountryData();
+  }, [countryValue]);
 
   const getWeatherInfo = async (e) => {
     e.preventDefault();
     const { country } = e.target.elements;
-    const countryValue = country.value;
+    const resultValue = country.value;
 
-    if (countryValue) {
-      let res = null;
-      res = await service.getWeatherBySearch(countryValue);
-      console.log(res.data);
+    if (resultValue) {
+      setCountryValue(resultValue);
     }
   };
 
   return (
-    <Card className="rounded-lg shadow-lg">
-      <Card.Body>
-        <Form onSubmit={getWeatherInfo}>
-          <Form.Group>
-            <Form.Label>País</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="País a buscar"
-              name="country"
-            />
-          </Form.Group>
-          <Row>
-            <Col md="6" xs="12" className="mx-auto">
-              <Button variant="primary" className="btn-block" type="input">
-                Obtener información
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-      </Card.Body>
-    </Card>
+    <Form onSubmit={getWeatherInfo}>
+      <InputGroup>
+        <FormControl
+          type="text"
+          placeholder="Ingresar nombre de País a buscar"
+          name="country"
+          id="searchBox"
+        />
+        <InputGroup.Append>
+          <Button variant="warning" type="input" className="btnSearch">
+            Buscar País
+          </Button>
+        </InputGroup.Append>
+      </InputGroup>
+    </Form>
   );
 };
 

@@ -8,3 +8,14 @@
     rgba(255, 255, 255, 1) 100%
   );
 }
+
+.leaflet-container,
+.leaflet-tile-container {
+  height: 400px;
+  width: 200px;
+}
+
+.leaflet-container,
+.leaflet-tile-container {
+  width: 100% !important;
+}
