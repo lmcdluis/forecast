@@ -15,7 +15,7 @@ const InfoCardWeatherHome = (props) => {
           <Col md="4" xs="12" className="p-3 border-right">
             <Row>
               <Col md="6">
-                <span className="h5">Temperatura:</span>
+                <span className="h6">Temperatura:</span>
               </Col>
               <Col md="6">
                 <span className="h6 text-primary">
@@ -27,7 +27,7 @@ const InfoCardWeatherHome = (props) => {
           <Col md="4" xs="12" className="p-3 border-right">
             <Row>
               <Col md="6">
-                <span className="h5">Presión:</span>
+                <span className="h6">Presión:</span>
               </Col>
               <Col md="6">
                 <span className="h6 text-primary">
@@ -39,7 +39,7 @@ const InfoCardWeatherHome = (props) => {
           <Col md="4" xs="12" className="p-3">
             <Row>
               <Col md="6">
-                <span className="h5">Humedad:</span>
+                <span className="h6">Humedad:</span>
               </Col>
               <Col md="6">
                 <span className="h6 text-primary">
@@ -53,7 +53,7 @@ const InfoCardWeatherHome = (props) => {
           <Col md="6" xs="12" className="p-3 border-right">
             <Row>
               <Col md="6">
-                <span className="h5">Temp. Máxima:</span>
+                <span className="h6">Temp. Máxima:</span>
               </Col>
               <Col md="6">
                 <span className="h6 text-primary">
@@ -65,7 +65,7 @@ const InfoCardWeatherHome = (props) => {
           <Col md="6" xs="12" className="p-3">
             <Row>
               <Col md="6">
-                <span className="h5">Temp. Mínima:</span>
+                <span className="h6">Temp. Mínima:</span>
               </Col>
               <Col md="6">
                 <span className="h6 text-primary">

@@ -9,7 +9,7 @@ const arraySearchHistory = [];
 
 const FormSearchHome = (props) => {
   const service = new Service();
-  const [countryValue, setCountryValue] = useState("");
+  const [countryValue, setCountryValue] = useState("Managua");
 
   useEffect(() => {
     const getCountryData = async () => {
@@ -29,6 +29,7 @@ const FormSearchHome = (props) => {
             longitud: data.coord.lon,
             coordenadas: data.coord,
             icon: data.weather[0].icon,
+            description: data.weather[0].description,
           };
           props.setWeatherInfo(newRecord);
           arraySearchHistory.push(newRecord);
@@ -60,13 +61,13 @@ const FormSearchHome = (props) => {
       <InputGroup>
         <FormControl
           type="text"
-          placeholder="Ingresar nombre de País a buscar"
+          placeholder="País o ciudad a buscar"
           name="country"
           id="searchBox"
         />
         <InputGroup.Append>
           <Button variant="warning" type="input" className="btnSearch">
-            Buscar País
+            Hacer búsqueda
           </Button>
         </InputGroup.Append>
       </InputGroup>

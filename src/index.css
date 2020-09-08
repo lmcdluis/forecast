@@ -40,3 +40,10 @@ code {
   box-shadow: 3px 3px 6px #bbbbbb;
   border: 5px solid skyblue;
 }
+
+@media (max-width: 40rem) {
+  .wrapper-icon {
+    top: 12%;
+    right: 2%;
+  }
+}

@@ -28,34 +28,36 @@ const HistorySearchList = (props) => {
       <Card.Body>
         <Card.Title>Historial de búsqueda</Card.Title>
         <ul className="list-unstyled">
-          {historyList.map((data, index) => {
-            return (
-              <li key={index} className="border-bottom p-3">
-                <Row>
-                  <Col md="6">
-                    <span className="h5">{data.country} </span>
-                  </Col>
-                  <Col md="3">
-                    <Button
-                      variant="success"
-                      className="mr-2"
-                      onClick={() => showItemtTable(data)}
-                    >
-                      Ver
-                    </Button>
-                  </Col>
-                  <Col md="3">
-                    <Button
-                      variant="danger"
-                      onClick={() => trashItemtTable(data)}
-                    >
-                      Eliminar
-                    </Button>
-                  </Col>
-                </Row>
-              </li>
-            );
-          })}
+          {historyList &&
+            historyList.map((data, index) => {
+              return (
+                <li key={index} className="border-bottom p-3">
+                  <Row>
+                    <Col md="6" xs="6">
+                      <span className="h5">{data.country} </span>
+                    </Col>
+                    <Col md="2" xs="3">
+                      <Button
+                        variant="success"
+                        className="btn-sm"
+                        onClick={() => showItemtTable(data)}
+                      >
+                        Ver
+                      </Button>
+                    </Col>
+                    <Col md="2" xs="3">
+                      <Button
+                        variant="danger"
+                        className="btn-sm"
+                        onClick={() => trashItemtTable(data)}
+                      >
+                        Eliminar
+                      </Button>
+                    </Col>
+                  </Row>
+                </li>
+              );
+            })}
         </ul>
       </Card.Body>
     </Card>
